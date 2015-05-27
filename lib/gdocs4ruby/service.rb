@@ -50,12 +50,12 @@ FOLDER_LIST_FEED = "http://docs.google.com/feeds/documents/private/full/-/folder
     # The authenticate method passes the username and password to google servers.  
     # If authentication succeeds, returns true, otherwise raises the AuthenticationFailed error.
     def authenticate(username, password, service='writely')
-      super(username, password, service)
+      super({:username => username, :password => password, :service => service})
     end
     
     #Helper function to reauthenticate to a new Google service without having to re-set credentials.
     def reauthenticate(service='writely')
-      authenticate(@account, @password, service)
+      authenticate({:username => @account, :password => @password, :service => service})
     end
     
     #Returns an array of Folder objects for each folder associated with 
